@@ -1,5 +1,6 @@
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export function createUser(req, res) {
 
@@ -33,12 +34,25 @@ export function loginUser(req, res) {
                 })
             }else {
                 const user = users[0]
-                const isPasswordCorrect = bcrypt.compareSync(req.body.password,user.password)
+                const isPasswordCorrect = bcrypt.compareSync
+                (req.body.password,user.password)
 
                 if(isPasswordCorrect){
+                    const token = jwt.sign({
+                        email : user.email,
+                        firstName : user.firstName,
+                        lastName : user.lastName,
+                        isBlocked : user.isBlocked,
+                        type : user.type,
+                        profilePicture : user.profilePicture
+                    } ,
+                        "cbc-secret-key-7973")
+
                     res.json({
-                        message: "User logged in"
+                        message : "User logged in",
+                        token: token
                     })
+                  
                 }else{
                     res.json({
                         message: "User not logged in. Invalid Password"
