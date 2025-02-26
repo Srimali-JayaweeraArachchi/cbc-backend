@@ -67,7 +67,7 @@ export function loginUser(req,res){
             isBlocked : user.isBlocked,
             type : user.type,
             profilePicture : user.profilePicture
-          } , process.env.SECRET)
+          } , process.env.JWT_SECRET)
           
           res.json({
             message: "User logged in",
@@ -137,7 +137,7 @@ export async function googleLogin(req,res){
         isBlocked : user.isBlocked,
         type : user.type,
         profilePicture : user.profilePicture
-      } , process.env.SECRET)
+      } , process.env.JWT_SECRET)
       
       res.json({
         message: "User logged in",
@@ -182,5 +182,5 @@ export async function googleLogin(req,res){
 
 }
 
-// malith27@example.com securepassword123 - admin
+// malith@example.com hashed_password_here - admin
 // malith3@example.com 1234 -customer
