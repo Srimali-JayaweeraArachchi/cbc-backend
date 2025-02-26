@@ -8,7 +8,7 @@ export async function createOrder(req, res) {
       message: "Please login as customer to create orders",
     });
   }
-
+//take the latest product id 
   try {
     const latestOrder = await Order.find().sort({ orderId: -1 }).limit(1);
     console.log(latestOrder);
