@@ -69,7 +69,7 @@ export function deleteUser(req, res) {
     User.deleteOne({email: req.body.email})
         .then(() => {
             res.json({
-                message: "User deleted"
+                message: "User deleted Successfully"
             });
         })
         .catch((error) => {
