@@ -22,14 +22,15 @@ export async function createOrder(req, res) {
 
       const numberString = currentOrderId.replace("CBC", "");
 
-      const number = parseInt(numberString);
+      const number = parseInt(numberString)
 
       const newNumber = (number + 1).toString().padStart(4, "0");
 
-      orderId = "CBC" + newNumber;
+      orderId = "CBC" + newNumber
     }
 
     const newOrderData = req.body;
+
 
     const newProductArray = [];
 
@@ -51,7 +52,7 @@ export async function createOrder(req, res) {
       newProductArray[i] = {
         name: product.productName,
         price: product.lastPrice,
-        quantity: newOrderData.orderedItems[i].qty,
+        quantity: newOrderData.orderedItems[i].quantity,
         image: product.images[0],
       };
     }
